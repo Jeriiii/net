@@ -1,0 +1,4 @@
+NewsletterSender/NewsletterSender/bin/Release/*
+!NewsletterSender/NewsletterSender/bin/Release/
+NewsletterSender/NewsletterSender/bin/Debug/*
+!NewsletterSender/NewsletterSender/bin/Debug/

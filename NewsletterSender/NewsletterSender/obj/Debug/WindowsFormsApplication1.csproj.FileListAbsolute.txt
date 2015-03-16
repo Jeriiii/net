@@ -1,0 +1,44 @@
+c:\users\petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Users\Petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Users\Petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Users\Petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+C:\Users\Petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\Petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+C:\Users\Petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\Petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\Petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\EntityFramework.dll
+C:\Users\Petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\System.Data.SQLite.dll
+C:\Users\Petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\Petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\Petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\EntityFramework.xml
+C:\Users\Petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\System.Data.SQLite.xml
+C:\Users\Petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.EditGroupWin.resources
+C:\Users\Petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.NewGroupWin.resources
+C:\Users\Petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.SendMailsWin.resources
+C:\Users\Petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.HomeWin.resources
+C:\Users\Petr\documents\visual studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Resource1.resources
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\EntityFramework.dll
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\EntityFramework.SqlServer.dll
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\System.Data.SQLite.dll
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\System.Data.SQLite.EF6.dll
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\System.Data.SQLite.Linq.dll
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\EntityFramework.xml
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\EntityFramework.SqlServer.xml
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\System.Data.SQLite.xml
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.EditGroupWin.resources
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.NewGroupWin.resources
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Resource1.resources
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.SendMailsWin.resources
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.HomeWin.resources
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\Newsletter.exe.config
+D:\škola\net\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\NewsletterSender.exe.config
