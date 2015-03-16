@@ -15,13 +15,6 @@ namespace NewsletterSender
 		[STAThread]
 		static void Main()
 		{
-			DB database = new DB();
-			ContactDao contactDao = new ContactDao(database);
-
-			contactDao.NewContact("abc", 1);
-
-			database.Close();
-
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new HomeWin());

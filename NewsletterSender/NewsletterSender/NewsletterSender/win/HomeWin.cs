@@ -64,6 +64,11 @@ namespace NewsletterSender
 			groupDao.Close();
 		}
 
+		/// <summary>
+		/// Spoštění editace skupiny při dvojkliku
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void groupsList_MouseDoubleClick(object sender, MouseEventArgs e)
 		{
 			int index = groupsList.IndexFromPoint(e.Location);
@@ -71,6 +76,15 @@ namespace NewsletterSender
 
 			EditGroupWin editGroupWin = new EditGroupWin(this, groupName);
 			editGroupWin.Show();
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			List<string> selectedItems = groupsList.SelectedItems.Cast<string>().ToList(); //vybrané položky
+			ContactDao contactDao = new ContactDao(new DB());
+			Dictionary<int, string> contacts = contactDao.GetByGroupNames(selectedItems);
+
+
 		}
 	}
 }

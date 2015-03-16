@@ -31,6 +31,72 @@ namespace NewsletterSender.Dao
 		}
 
 		/// <summary>
+		/// Vybere kontakty podle názvů skupin.
+		/// </summary>
+		/// <param name="groupNames">Název skupin.</param>
+		/// <returns>Vybrané kontakty.</returns>
+		public Dictionary<int, string> GetByGroupNames(List<string> groupNames)
+		{
+			List<string> groupIds = GetGroupIds(groupNames);
+			Dictionary<int, string> emails = GetContacts(groupIds);
+
+			return emails;
+
+
+		}
+
+		/// <summary>
+		/// Získání id skupin z jejich názvů.
+		/// </summary>
+		/// <returns>Seznam Id skupin.</returns>
+		private List<string> GetGroupIds(List<string> groupNames)
+		{
+			string sqlNames = string.Join(",", groupNames.Select(name => name = "'" + name + "'").ToArray());
+			string sql = "SELECT id FROM " + GroupDao.tableName + " WHERE name IN (" + sqlNames + ")";
+			SQLiteDataReader reader = database.executeReader(sql);
+
+			List<string> groupIds = new List<string>();
+			while (reader.Read())
+			{
+				groupIds.Add("" + reader.GetInt32(0));
+			}
+
+			return groupIds;
+		}
+
+		/// <summary>
+		/// Vrátí kontakty podle id skupin
+		/// </summary>
+		/// <param name="groupIds"></param>
+		/// <returns></returns>
+		private Dictionary<int, string> GetContacts(List<string> groupIds)
+		{
+			/* získání id kontaktů ze spojovací tabulky */
+			string sqlIds = string.Join(" OR ", groupIds.Select(id => id = "'" + id + "'").ToArray());
+			string sql = "SELECT contactId FROM " + ContactGroupDao.tableName + " WHERE groupId IN (" + sqlIds + ")";
+			SQLiteDataReader reader = database.executeReader(sql);
+
+			List<string> contactGroupIds = new List<string>();
+			while (reader.Read())
+			{
+				contactGroupIds.Add(reader.GetString(0));
+			}
+
+			/* získání samotných kontaktů */
+			sqlIds = string.Join(" OR ", contactGroupIds.Select(id => id = "'" + id + "'").ToArray());
+			sql = "SELECT id, email FROM " + ContactDao.tableName + " WHERE id IN (" + sqlIds + ")";
+			reader = database.executeReader(sql);
+
+			Dictionary<int, string> emails = new Dictionary<int, string>();
+			while (reader.Read())
+			{
+				emails.Add(reader.GetInt32(0), reader.GetString(1));
+			}
+
+			return emails;
+		}
+
+		/// <summary>
 		/// Vybere kontakty podle názvu skupiny.
 		/// </summary>
 		/// <param name="groupName">Název skupiny.</param>
