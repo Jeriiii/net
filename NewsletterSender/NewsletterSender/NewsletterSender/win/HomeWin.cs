@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NewsletterSender.Dao;
+using System.Net.Mail;
+using NewsletterSender.emails;
+using NewsletterSender.win;
 
 namespace NewsletterSender
 {
@@ -78,13 +81,25 @@ namespace NewsletterSender
 			editGroupWin.Show();
 		}
 
+		/// <summary>
+		/// Tlačítko na odeslání emailů.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void button1_Click(object sender, EventArgs e)
 		{
 			List<string> selectedItems = groupsList.SelectedItems.Cast<string>().ToList(); //vybrané položky
 			ContactDao contactDao = new ContactDao(new DB());
 			Dictionary<int, string> contacts = contactDao.GetByGroupNames(selectedItems);
 
+			SendMailsWin sendMailsWin = new SendMailsWin(contacts);
+			sendMailsWin.Show();
+		}
 
+		private void button3_Click(object sender, EventArgs e)
+		{
+			SettingWin settingWin = new SettingWin();
+			settingWin.Show();
 		}
 	}
 }

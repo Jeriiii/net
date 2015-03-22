@@ -1,5 +1,4 @@
 D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\bin\Debug\NewsletterSender.exe.config
-D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\obj\Debug\NewsletterSender.csprojResolveAssemblyReference.cache
 D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\obj\Debug\NewsletterSender.Properties.Resources.resources
 D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\obj\Debug\NewsletterSender.EditGroupWin.resources
 D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\obj\Debug\NewsletterSender.HomeWin.resources
@@ -18,3 +17,5 @@ D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\bin\Debug\Entit
 D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\bin\Debug\System.Data.SQLite.xml
 D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\obj\Debug\NewsletterSender.exe
 D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\obj\Debug\NewsletterSender.pdb
+D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\obj\Debug\NewsletterSender.win.SettingWin.resources
+D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\obj\Debug\NewsletterSender.csprojResolveAssemblyReference.cache

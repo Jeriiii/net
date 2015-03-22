@@ -65,7 +65,10 @@
     <Compile Include="Database\Dao\ContactDao.cs" />
     <Compile Include="Database\Dao\ContactGroupDao.cs" />
     <Compile Include="Database\Dao\GroupDao.cs" />
+    <Compile Include="Database\Dao\SettingDao.cs" />
     <Compile Include="Database\DB.cs" />
+    <Compile Include="Database\Model\SettingModel.cs" />
+    <Compile Include="emails\EmailMessage.cs" />
     <Compile Include="emails\EmailUtils.cs" />
     <Compile Include="emails\EmailValidator.cs" />
     <Compile Include="emails\MailMessages.cs" />
@@ -101,6 +104,12 @@
     <Compile Include="win\SendMailsWin.Designer.cs">
       <DependentUpon>SendMailsWin.cs</DependentUpon>
     </Compile>
+    <Compile Include="win\SettingWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="win\SettingWin.Designer.cs">
+      <DependentUpon>SettingWin.cs</DependentUpon>
+    </Compile>
     <Compile Include="win\WarningMessage.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -122,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="win\SendMailsWin.resx">
       <DependentUpon>SendMailsWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="win\SettingWin.resx">
+      <DependentUpon>SettingWin.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

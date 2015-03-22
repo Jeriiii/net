@@ -5,22 +5,65 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Mail;
 using System.Collections;
+using System.Net;
+using NewsletterSender.emails;
+using NewsletterSender.Database.Model;
+using NewsletterSender.Dao;
 
 namespace NewsletterSender
 {
-    /**
-     * Emaily k odeslání.
-     */
-    class MailMessages : MailMessage
-    {
-        /**
-         * Přidá seznam emailů k odeslání
-         */
-        public void Adds(List <MailAddress> mailAddresses)
-        {
-            foreach(MailAddress address in mailAddresses) {
-                this.To.Add(address);
-            }
-        }
-    }
+	/// <summary>
+	/// Emaily k odeslání.
+	/// </summary>
+	class MailMessages
+	{
+
+		/// <summary>
+		/// Odešle všechny emaily. Nastaví defaultního klienta.
+		/// </summary>
+		/// <param name="contacts">Kontakty k odeslání.</param>
+		/// <returns>Chybová hláška. NULL = odeslání proběhlo úspěšně.</returns>
+		public void SendMails(Dictionary<int, string> contacts, EmailMessage emailMessage)
+		{
+			/* načtení nastavení z DB */
+			SettingDao settingDao = new SettingDao(new DB());
+			SettingModel model = settingDao.GetAll().First();
+			settingDao.Close();
+
+			/* vytvoření klienta a odeslání emailů */
+			SmtpClient client = new SmtpClient(model.host);
+			client.Port = model.port;
+
+			NetworkCredential info = new NetworkCredential(model.fromAddress, model.fromName);
+			client.DeliveryMethod = SmtpDeliveryMethod.Network;
+			client.UseDefaultCredentials = false;
+			client.Credentials = info;
+
+			SendMails(contacts, emailMessage, client);
+		}
+
+		/// <summary>
+		/// Odešle všechny emaily.
+		/// </summary>
+		/// <param name="contacts">Kontakty k odeslání.</param>
+		/// <param name="client">Klient, který bude emaily odeslívat</param>
+		/// <returns>Chybová hláška. NULL = odeslání proběhlo úspěšně.</returns>
+		public void SendMails(Dictionary<int, string> contacts, EmailMessage emailMessage, SmtpClient client)
+		{
+			try
+			{
+				/* Postupně odešle všechny emaily. */
+				foreach (var contact in contacts)
+				{
+					MailMessage email = emailMessage.CreateMailMessage(contact.Value);
+
+					client.Send(email);
+				}
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+	}
 }

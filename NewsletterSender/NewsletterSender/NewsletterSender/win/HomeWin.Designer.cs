@@ -32,12 +32,13 @@
 			this.button1 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
 			this.groupsList = new System.Windows.Forms.ListBox();
+			this.settingBtn = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(22, 30);
+			this.label1.Location = new System.Drawing.Point(22, 42);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(45, 13);
 			this.label1.TabIndex = 1;
@@ -45,7 +46,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(25, 410);
+			this.button1.Location = new System.Drawing.Point(25, 422);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(145, 38);
 			this.button1.TabIndex = 2;
@@ -55,7 +56,7 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(408, 55);
+			this.button2.Location = new System.Drawing.Point(408, 67);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(119, 22);
 			this.button2.TabIndex = 3;
@@ -66,17 +67,28 @@
 			// groupsList
 			// 
 			this.groupsList.FormattingEnabled = true;
-			this.groupsList.Location = new System.Drawing.Point(25, 55);
+			this.groupsList.Location = new System.Drawing.Point(25, 67);
 			this.groupsList.Name = "groupsList";
 			this.groupsList.Size = new System.Drawing.Size(364, 342);
 			this.groupsList.TabIndex = 5;
 			this.groupsList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.groupsList_MouseDoubleClick);
+			// 
+			// settingBtn
+			// 
+			this.settingBtn.Location = new System.Drawing.Point(485, 12);
+			this.settingBtn.Name = "settingBtn";
+			this.settingBtn.Size = new System.Drawing.Size(75, 23);
+			this.settingBtn.TabIndex = 6;
+			this.settingBtn.Text = "Nastavení";
+			this.settingBtn.UseVisualStyleBackColor = true;
+			this.settingBtn.Click += new System.EventHandler(this.button3_Click);
 			// 
 			// HomeWin
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(572, 540);
+			this.Controls.Add(this.settingBtn);
 			this.Controls.Add(this.groupsList);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.button1);
@@ -94,5 +106,6 @@
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.ListBox groupsList;
+		private System.Windows.Forms.Button settingBtn;
 	}
 }

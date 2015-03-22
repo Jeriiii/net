@@ -29,8 +29,21 @@ namespace NewsletterSender
 		/// <param name="groupName">Název skupiny.</param>
 		public static void WrongGroupName(string groupName)
 		{
-			string message = "Skupina s názvem " + groupName + " již eistuje.";
+			string message = "Skupina s názvem " + groupName + " již existuje.";
 			const string caption = "Název skupiny";
+			var result = MessageBox.Show(message, caption,
+										 MessageBoxButtons.OK,
+										 MessageBoxIcon.Question);
+		}
+
+		/// <summary>
+		/// Upozornění, že emaily nebyly odeslány.
+		/// </summary>
+		/// <param name="errorMsg">Chybová hláška, proč nebyly emaily odeslány.</param>
+		public static void EmailsNotSended(string errorMsg)
+		{
+			string message = "Při odesílání emailů nastala tato chyba: " + errorMsg;
+			const string caption = "Chyba při odeslání emailů";
 			var result = MessageBox.Show(message, caption,
 										 MessageBoxButtons.OK,
 										 MessageBoxIcon.Question);

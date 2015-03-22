@@ -79,11 +79,11 @@ namespace NewsletterSender.Dao
 			List<string> contactGroupIds = new List<string>();
 			while (reader.Read())
 			{
-				contactGroupIds.Add(reader.GetString(0));
+				contactGroupIds.Add(reader.GetInt32(0).ToString());
 			}
 
 			/* získání samotných kontaktů */
-			sqlIds = string.Join(" OR ", contactGroupIds.Select(id => id = "'" + id + "'").ToArray());
+			sqlIds = string.Join(", ", contactGroupIds.Select(id => id = "'" + id + "'").ToArray());
 			sql = "SELECT id, email FROM " + ContactDao.tableName + " WHERE id IN (" + sqlIds + ")";
 			reader = database.executeReader(sql);
 
