@@ -32,6 +32,17 @@ namespace NewsletterSender.Dao
 		}
 
 		/// <summary>
+		/// Uloží nový název skupiny do databáze.
+		/// </summary>
+		/// <param name="name"></param>
+		/// <param name="newName"></param>
+		public void UpdateName(string name, string newName)
+		{
+			string sql = "UPDATE " + tableName + " SET name = '" + newName + "' WHERE name = '" + name + "'";
+			database.execute(sql);
+		}
+
+		/// <summary>
 		/// Vrátí všechny skupiny.
 		/// </summary>
 		/// <returns>Všechy skupiny.</returns>

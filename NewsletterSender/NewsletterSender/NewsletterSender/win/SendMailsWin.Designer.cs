@@ -38,6 +38,7 @@
 			this.fromName = new System.Windows.Forms.TextBox();
 			this.fromAdderss = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
+			this.progressBar = new System.Windows.Forms.ProgressBar();
 			this.SuspendLayout();
 			// 
 			// button1
@@ -125,11 +126,19 @@
 			this.label4.TabIndex = 8;
 			this.label4.Text = "Od (email)";
 			// 
+			// progressBar
+			// 
+			this.progressBar.Location = new System.Drawing.Point(155, 484);
+			this.progressBar.Name = "progressBar";
+			this.progressBar.Size = new System.Drawing.Size(449, 22);
+			this.progressBar.TabIndex = 10;
+			// 
 			// SendMailsWin
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(649, 552);
+			this.Controls.Add(this.progressBar);
 			this.Controls.Add(this.fromAdderss);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.fromName);
@@ -160,6 +169,7 @@
 		private System.Windows.Forms.TextBox fromName;
 		private System.Windows.Forms.TextBox fromAdderss;
 		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.ProgressBar progressBar;
 
 	}
 }

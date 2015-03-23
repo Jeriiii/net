@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using NewsletterSender.Dao;
 using System.IO;
 using NewsletterSender.win;
+using System.Data.SQLite;
 
 namespace NewsletterSender
 {
@@ -17,10 +18,11 @@ namespace NewsletterSender
 		[STAThread]
 		static void Main()
 		{
-			//CheckData();
-
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
+
+			CheckData();
+
 			Application.Run(new HomeWin());
 		}
 
@@ -32,14 +34,13 @@ namespace NewsletterSender
 			if (! File.Exists(DB.dbFileName))
 			{
 				CreateDBFile();
-				SettingWin settingWin = new SettingWin();
-				settingWin.Show();
+				Application.Run(new InstallWin());
 			}
 		}
 
 		private static void CreateDBFile()
 		{
-			File.Create(DB.dbFileName);
+			SQLiteConnection.CreateFile(DB.dbFileName);
 			DB db = new DB();
 
 			string sqlCreateDB = "BEGIN TRANSACTION;" +

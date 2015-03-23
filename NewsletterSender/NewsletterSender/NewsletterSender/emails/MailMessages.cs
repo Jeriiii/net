@@ -9,6 +9,7 @@ using System.Net;
 using NewsletterSender.emails;
 using NewsletterSender.Database.Model;
 using NewsletterSender.Dao;
+using System.Windows.Forms;
 
 namespace NewsletterSender
 {
@@ -23,7 +24,7 @@ namespace NewsletterSender
 		/// </summary>
 		/// <param name="contacts">Kontakty k odeslání.</param>
 		/// <returns>Chybová hláška. NULL = odeslání proběhlo úspěšně.</returns>
-		public void SendMails(Dictionary<int, string> contacts, EmailMessage emailMessage)
+		public void SendMails(ProgressBar progressBar, Dictionary<int, string> contacts, EmailMessage emailMessage)
 		{
 			/* načtení nastavení z DB */
 			SettingDao settingDao = new SettingDao(new DB());
@@ -39,7 +40,7 @@ namespace NewsletterSender
 			client.UseDefaultCredentials = false;
 			client.Credentials = info;
 
-			SendMails(contacts, emailMessage, client);
+			SendMails(progressBar, contacts, emailMessage, client);
 		}
 
 		/// <summary>
@@ -48,16 +49,25 @@ namespace NewsletterSender
 		/// <param name="contacts">Kontakty k odeslání.</param>
 		/// <param name="client">Klient, který bude emaily odeslívat</param>
 		/// <returns>Chybová hláška. NULL = odeslání proběhlo úspěšně.</returns>
-		public void SendMails(Dictionary<int, string> contacts, EmailMessage emailMessage, SmtpClient client)
+		public void SendMails(ProgressBar progressBar, Dictionary<int, string> contacts, EmailMessage emailMessage, SmtpClient client)
 		{
 			try
 			{
+				int count = contacts.Count(); 
+
+				progressBar.Visible = true;
+				progressBar.Minimum = 1;
+				progressBar.Maximum = contacts.Count();
+				progressBar.Value = 1;
+				progressBar.Step = 1;
+
 				/* Postupně odešle všechny emaily. */
 				foreach (var contact in contacts)
 				{
 					MailMessage email = emailMessage.CreateMailMessage(contact.Value);
 
 					client.Send(email);
+					progressBar.PerformStep();
 				}
 			}
 			catch (Exception ex)

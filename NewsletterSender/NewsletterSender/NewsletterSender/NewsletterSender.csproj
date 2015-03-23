@@ -109,6 +109,12 @@
     <Compile Include="win\ImportContactsMySQLWin.Designer.cs">
       <DependentUpon>ImportContactsMySQLWin.cs</DependentUpon>
     </Compile>
+    <Compile Include="win\InstallWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="win\InstallWin.Designer.cs">
+      <DependentUpon>InstallWin.cs</DependentUpon>
+    </Compile>
     <Compile Include="win\NewGroupWin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="win\ImportContactsMySQLWin.resx">
       <DependentUpon>ImportContactsMySQLWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="win\InstallWin.resx">
+      <DependentUpon>InstallWin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="win\NewGroupWin.resx">
       <DependentUpon>NewGroupWin.cs</DependentUpon>

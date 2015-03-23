@@ -22,3 +22,4 @@ D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\obj\Debug\Newsl
 D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\bin\Debug\MySql.Data.dll
 D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\obj\Debug\NewsletterSender.win.ImportContactsWin.resources
 D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\obj\Debug\NewsletterSender.win.ImportContactsMySQLWin.resources
+D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\obj\Debug\NewsletterSender.win.InstallWin.resources

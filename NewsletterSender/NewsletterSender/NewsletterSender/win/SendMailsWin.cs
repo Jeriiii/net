@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -34,6 +35,8 @@ namespace NewsletterSender
 
 			fromName.Text = model.fromName;
 			fromAdderss.Text = model.fromAddress;
+
+			progressBar.Visible = false;
 		}
 
 		private void Form1_Load(object sender, EventArgs e)
@@ -51,7 +54,8 @@ namespace NewsletterSender
 			MailMessages mailMessages = new MailMessages();
 			try
 			{
-				mailMessages.SendMails(contacts, emailMessage);
+				mailMessages.SendMails(this.progressBar, contacts, emailMessage);
+				WarningMessage.EmailsSended();
 			}
 			catch (Exception ex)
 			{
@@ -75,6 +79,7 @@ namespace NewsletterSender
 			emailMessage.FromAddress = "info@123.cz";
 
 			sendMails(contacts, emailMessage);
+			this.Close();
 		}
 	}
 }

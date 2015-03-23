@@ -93,16 +93,58 @@ namespace NewsletterSender
 			contactDao.Close();
 		}
 
+		/// <summary>
+		/// Import kontaktů z mysql databáze.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void importContactsDBBtn_Click(object sender, EventArgs e)
 		{
 			ImportContactsMySQLWin impWin = new ImportContactsMySQLWin(this, groupName);
 			impWin.Show();
 		}
 
+		/// <summary>
+		/// Import kontaktů.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void importContactBtn_Click(object sender, EventArgs e)
 		{
 			ImportContactsWin impWin = new ImportContactsWin(this, groupName);
 			impWin.Show();
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			string newGroupName = this.groupNameBox.Text;
+
+			if (GroupNameNotExist(newGroupName))
+			{
+				GroupDao groupDao = new GroupDao(new DB());
+				groupDao.UpdateName(groupName, newGroupName);
+				groupDao.Close();
+
+				homeWin.Invalidate();
+				this.Close();
+			}
+		}
+
+		/// <summary>
+		/// Zkontroluje, zda existuje skupina s tímto názvem. Pokud ano, vypíše varovnou hlášku.
+		/// </summary>
+		/// <param name="groupName">Název skupiny.</param>
+		/// <returns>TRUE = skupina s tímto názvem neexistuje, jinak FALSE.</returns>
+		private bool GroupNameNotExist(string groupName)
+		{
+			GroupDao groupDao = new GroupDao(new DB());
+			bool nameExist = groupDao.GroupNameExist(groupName);
+			if (nameExist)
+			{
+				WarningMessage.WrongGroupName(groupName);
+			}
+
+			return !nameExist;
 		}
 	}
 }

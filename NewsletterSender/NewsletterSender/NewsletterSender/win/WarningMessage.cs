@@ -101,5 +101,17 @@ namespace NewsletterSender
 			DialogResult dialogResult = MessageBox.Show(message, caption, MessageBoxButtons.YesNo);
 			return dialogResult;
 		}
+
+		/// <summary>
+		/// Upozornění, že odeslání emailu bylo úspěšné.
+		/// </summary>
+		public static void EmailsSended()
+		{
+			string message = "Odeslání proběhlo úspěšně.";
+			const string caption = "Odeslání proběhlo úspěšně.";
+			var result = MessageBox.Show(message, caption,
+										 MessageBoxButtons.OK,
+										 MessageBoxIcon.Question);
+		}
 	}
 }
