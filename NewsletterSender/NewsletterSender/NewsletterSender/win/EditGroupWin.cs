@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NewsletterSender.Dao;
+using NewsletterSender.win;
 
 namespace NewsletterSender
 {
@@ -55,6 +56,53 @@ namespace NewsletterSender
 			Dictionary<int, string> contacts = contactDao.GetByGroupName(groupName);
 
 			this.contactsBox.DataSource = (List<string>)contacts.Select(group => group.Value).ToList();
+		}
+
+		/// <summary>
+		/// Smaže vybrané kontakty.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void button2_Click(object sender, EventArgs e)
+		{
+			if (contactsBox.SelectedItems.Count == 0) {
+				WarningMessage.NotContactSelected();
+			} else {
+				List<string> contactNames = new List<string>();
+				foreach (var contact in contactsBox.SelectedItems)
+				{
+					contactNames.Add(contact.ToString());
+				}
+
+				DialogResult dialogResult = WarningMessage.DeleteContact(contactNames);
+				if (dialogResult == DialogResult.Yes)
+				{
+					deleteContacts(contactNames);
+					InitEmails();
+				}				
+			}
+		}
+
+		/// <summary>
+		/// Smaže vybrané kontakty.
+		/// </summary>
+		private void deleteContacts(List<string> contactNames)
+		{
+			ContactDao contactDao = new ContactDao(new DB());
+			contactDao.DeleteContacts(contactNames, this.groupName);
+			contactDao.Close();
+		}
+
+		private void importContactsDBBtn_Click(object sender, EventArgs e)
+		{
+			ImportContactsMySQLWin impWin = new ImportContactsMySQLWin(this, groupName);
+			impWin.Show();
+		}
+
+		private void importContactBtn_Click(object sender, EventArgs e)
+		{
+			ImportContactsWin impWin = new ImportContactsWin(this, groupName);
+			impWin.Show();
 		}
 	}
 }

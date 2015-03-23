@@ -48,5 +48,58 @@ namespace NewsletterSender
 										 MessageBoxButtons.OK,
 										 MessageBoxIcon.Question);
 		}
+
+		/// <summary>
+		/// Upozornění, že nebyla vybrána žádná položka.
+		/// </summary>
+		public static void NotContactSelected()
+		{
+			string message = "Vyberte prosím alespoň jeden kontakt.";
+			const string caption = "Kontakty nebyly vybrány.";
+			var result = MessageBox.Show(message, caption,
+										 MessageBoxButtons.OK,
+										 MessageBoxIcon.Question);
+		}
+
+		/// <summary>
+		/// Upozornění, že nebyla vybrána žádná položka.
+		/// </summary>
+		public static void NotGroupSelected()
+		{
+			string message = "Vyberte prosím alespoň jednu skupinu.";
+			const string caption = "Skupiny nebyly vybrány.";
+			var result = MessageBox.Show(message, caption,
+										 MessageBoxButtons.OK,
+										 MessageBoxIcon.Question);
+		}
+
+		/// <summary>
+		/// Upozornění, že nebyla vybrána žádná položka.
+		/// </summary>
+		public static void MysqlConnException(string errMsg)
+		{
+			string message = "Připojení do databáze se nezdařilo: " + errMsg;
+			const string caption = "Připojení se nezdažilo.";
+			var result = MessageBox.Show(message, caption,
+										 MessageBoxButtons.OK,
+										 MessageBoxIcon.Question);
+		}
+
+		/// <summary>
+		/// Upozornění, zda chce uživatel smazat kontakty.
+		/// </summary>
+		/// <param name="contactNames">Seznam kontaktů.</param>
+		/// <returns></returns>
+		public static DialogResult DeleteContact(List<string> contactNames)
+		{
+			string message = "Opravdu chcete smazat vybrané položky?";
+			foreach(string contactName in contactNames)
+			{
+				message = message + Environment.NewLine + contactName;
+			}
+			const string caption = "Smazat vybrané položky?";
+			DialogResult dialogResult = MessageBox.Show(message, caption, MessageBoxButtons.YesNo);
+			return dialogResult;
+		}
 	}
 }

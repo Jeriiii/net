@@ -33,6 +33,9 @@
 			this.groupNameBox = new System.Windows.Forms.TextBox();
 			this.button1 = new System.Windows.Forms.Button();
 			this.contactsBox = new System.Windows.Forms.ListBox();
+			this.deleteEmailBtn = new System.Windows.Forms.Button();
+			this.importContactBtn = new System.Windows.Forms.Button();
+			this.importContactsDBBtn = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// label2
@@ -62,7 +65,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(25, 288);
+			this.button1.Location = new System.Drawing.Point(375, 44);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(152, 23);
 			this.button1.TabIndex = 5;
@@ -74,14 +77,48 @@
 			this.contactsBox.FormattingEnabled = true;
 			this.contactsBox.Location = new System.Drawing.Point(25, 99);
 			this.contactsBox.Name = "contactsBox";
-			this.contactsBox.Size = new System.Drawing.Size(327, 173);
+			this.contactsBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+			this.contactsBox.Size = new System.Drawing.Size(327, 264);
 			this.contactsBox.TabIndex = 10;
+			// 
+			// deleteEmailBtn
+			// 
+			this.deleteEmailBtn.Location = new System.Drawing.Point(375, 99);
+			this.deleteEmailBtn.Name = "deleteEmailBtn";
+			this.deleteEmailBtn.Size = new System.Drawing.Size(152, 23);
+			this.deleteEmailBtn.TabIndex = 11;
+			this.deleteEmailBtn.Text = "Smazat";
+			this.deleteEmailBtn.UseVisualStyleBackColor = true;
+			this.deleteEmailBtn.Click += new System.EventHandler(this.button2_Click);
+			// 
+			// importContactBtn
+			// 
+			this.importContactBtn.Location = new System.Drawing.Point(375, 141);
+			this.importContactBtn.Name = "importContactBtn";
+			this.importContactBtn.Size = new System.Drawing.Size(152, 23);
+			this.importContactBtn.TabIndex = 12;
+			this.importContactBtn.Text = "Vložit nové kontakty";
+			this.importContactBtn.UseVisualStyleBackColor = true;
+			this.importContactBtn.Click += new System.EventHandler(this.importContactBtn_Click);
+			// 
+			// importContactsDBBtn
+			// 
+			this.importContactsDBBtn.Location = new System.Drawing.Point(375, 183);
+			this.importContactsDBBtn.Name = "importContactsDBBtn";
+			this.importContactsDBBtn.Size = new System.Drawing.Size(152, 23);
+			this.importContactsDBBtn.TabIndex = 13;
+			this.importContactsDBBtn.Text = "Import z DB";
+			this.importContactsDBBtn.UseVisualStyleBackColor = true;
+			this.importContactsDBBtn.Click += new System.EventHandler(this.importContactsDBBtn_Click);
 			// 
 			// EditGroupWin
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(564, 501);
+			this.Controls.Add(this.importContactsDBBtn);
+			this.Controls.Add(this.importContactBtn);
+			this.Controls.Add(this.deleteEmailBtn);
 			this.Controls.Add(this.contactsBox);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
@@ -101,5 +138,8 @@
 		private System.Windows.Forms.TextBox groupNameBox;
         private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.ListBox contactsBox;
+		private System.Windows.Forms.Button deleteEmailBtn;
+		private System.Windows.Forms.Button importContactBtn;
+		private System.Windows.Forms.Button importContactsDBBtn;
     }
 }

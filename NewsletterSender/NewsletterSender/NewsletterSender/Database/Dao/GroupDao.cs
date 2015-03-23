@@ -60,7 +60,40 @@ namespace NewsletterSender.Dao
 			string sql = "SELECT COUNT(id) FROM " + tableName + " WHERE name = '" + groupName + "'";
 			int count = Convert.ToInt32((Int64)database.executeScalar(sql));
 
-			return count == 1;
+			return count > 0;
+		}
+
+		/// <summary>
+		/// Smaže seznam skupin.
+		/// </summary>
+		/// <param name="groupNames">Seznam skupin.</param>
+		public void DeleteGroups(List<string> groupNames)
+		{
+			List<string> groupsIds = GetGroupIds(groupNames);
+
+			string sql = "DELETE FROM " + tableName + " WHERE id IN (" + listToIN(groupsIds) + ")";
+			database.execute(sql);
+
+			sql = "DELETE FROM " + ContactGroupDao.tableName + " WHERE groupId IN (" + listToIN(groupsIds) + ")";
+			database.execute(sql);
+		}
+
+		/// <summary>
+		/// Získání id skupin z jejich názvů.
+		/// </summary>
+		/// <returns>Seznam Id skupin.</returns>
+		public List<string> GetGroupIds(List<string> groupNames)
+		{
+			string sql = "SELECT id FROM " + tableName + " WHERE name IN (" + listToIN(groupNames) + ")";
+			SQLiteDataReader reader = database.executeReader(sql);
+
+			List<string> groupIds = new List<string>();
+			while (reader.Read())
+			{
+				groupIds.Add("" + reader.GetInt32(0));
+			}
+
+			return groupIds;
 		}
 	}
 }

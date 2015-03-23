@@ -39,6 +39,10 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.9.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MySql.Data.6.9.6\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -71,6 +75,7 @@
     <Compile Include="emails\EmailMessage.cs" />
     <Compile Include="emails\EmailUtils.cs" />
     <Compile Include="emails\EmailValidator.cs" />
+    <Compile Include="emails\ImportContacts.cs" />
     <Compile Include="emails\MailMessages.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -91,6 +96,18 @@
     </Compile>
     <Compile Include="win\HomeWin.Designer.cs">
       <DependentUpon>HomeWin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="win\ImportContactsWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="win\ImportContactsWin.Designer.cs">
+      <DependentUpon>ImportContactsWin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="win\ImportContactsMySQLWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="win\ImportContactsMySQLWin.Designer.cs">
+      <DependentUpon>ImportContactsMySQLWin.cs</DependentUpon>
     </Compile>
     <Compile Include="win\NewGroupWin.cs">
       <SubType>Form</SubType>
@@ -125,6 +142,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="win\HomeWin.resx">
       <DependentUpon>HomeWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="win\ImportContactsWin.resx">
+      <DependentUpon>ImportContactsWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="win\ImportContactsMySQLWin.resx">
+      <DependentUpon>ImportContactsMySQLWin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="win\NewGroupWin.resx">
       <DependentUpon>NewGroupWin.cs</DependentUpon>

@@ -37,31 +37,13 @@ namespace NewsletterSender.Dao
 		/// <returns>Vybrané kontakty.</returns>
 		public Dictionary<int, string> GetByGroupNames(List<string> groupNames)
 		{
-			List<string> groupIds = GetGroupIds(groupNames);
+			GroupDao groupDao = new GroupDao(database);
+			List<string> groupIds = groupDao.GetGroupIds(groupNames);
 			Dictionary<int, string> emails = GetContacts(groupIds);
 
 			return emails;
 
 
-		}
-
-		/// <summary>
-		/// Získání id skupin z jejich názvů.
-		/// </summary>
-		/// <returns>Seznam Id skupin.</returns>
-		private List<string> GetGroupIds(List<string> groupNames)
-		{
-			string sqlNames = string.Join(",", groupNames.Select(name => name = "'" + name + "'").ToArray());
-			string sql = "SELECT id FROM " + GroupDao.tableName + " WHERE name IN (" + sqlNames + ")";
-			SQLiteDataReader reader = database.executeReader(sql);
-
-			List<string> groupIds = new List<string>();
-			while (reader.Read())
-			{
-				groupIds.Add("" + reader.GetInt32(0));
-			}
-
-			return groupIds;
 		}
 
 		/// <summary>
@@ -72,8 +54,7 @@ namespace NewsletterSender.Dao
 		private Dictionary<int, string> GetContacts(List<string> groupIds)
 		{
 			/* získání id kontaktů ze spojovací tabulky */
-			string sqlIds = string.Join(" OR ", groupIds.Select(id => id = "'" + id + "'").ToArray());
-			string sql = "SELECT contactId FROM " + ContactGroupDao.tableName + " WHERE groupId IN (" + sqlIds + ")";
+			string sql = "SELECT contactId FROM " + ContactGroupDao.tableName + " WHERE groupId IN (" + listToIN(groupIds) + ")";
 			SQLiteDataReader reader = database.executeReader(sql);
 
 			List<string> contactGroupIds = new List<string>();
@@ -83,8 +64,7 @@ namespace NewsletterSender.Dao
 			}
 
 			/* získání samotných kontaktů */
-			sqlIds = string.Join(", ", contactGroupIds.Select(id => id = "'" + id + "'").ToArray());
-			sql = "SELECT id, email FROM " + ContactDao.tableName + " WHERE id IN (" + sqlIds + ")";
+			sql = "SELECT id, email FROM " + ContactDao.tableName + " WHERE id IN (" + listToIN(contactGroupIds) + ")";
 			reader = database.executeReader(sql);
 
 			Dictionary<int, string> emails = new Dictionary<int, string>();
@@ -103,25 +83,12 @@ namespace NewsletterSender.Dao
 		/// <returns>Vybrané kontakty.</returns>
 		public Dictionary<int, string> GetByGroupName(string groupName)
 		{
+			List<string>groupNames = new List<string>{groupName};
 
-			string sql = "SELECT id FROM " + GroupDao.tableName + " WHERE name = '" + groupName + "'";
-			int groupId = Convert.ToInt32((Int64) database.executeScalar(sql));
+			GroupDao groupDao = new GroupDao(database);
+			List<string> groupIds = groupDao.GetGroupIds(groupNames);
 
-			sql = "SELECT contactId FROM " + ContactGroupDao.tableName + " WHERE groupId = '" + groupId + "'";
-			SQLiteDataReader reader = database.executeReader(sql);
-
-			Dictionary<int, string> emails = new Dictionary<int, string>();
-			if (reader.Read()) //skupina má alespoň jeden email
-			{
-				sql = "SELECT id, email FROM " + ContactDao.tableName + " WHERE id = '" + reader.GetInt32(0) + "'";
-				reader = database.executeReader(sql);
-
-
-				while (reader.Read())
-				{
-					emails.Add(reader.GetInt32(0), reader.GetString(1));
-				}
-			}
+			Dictionary<int, string> emails = GetContacts(groupIds);
 
 			return emails;
 
@@ -171,6 +138,54 @@ namespace NewsletterSender.Dao
 			string sql = "DELETE FROM " + ContactGroupDao.tableName +
 			"WHERE groupId = '" + groupId + "' AND contactId = '" + contactId + "'";
 			database.execute(sql);
+		}
+
+		/// <summary>
+		/// Smaže vazby mezi skupinou a kontakty.
+		/// </summary>
+		/// <param name="contactNames">Názvy kontaktů.</param>
+		/// <param name="groupName">Název skupiny.</param>
+		public void DeleteContacts(List<string> contactNames, string groupName)
+		{
+			int groupId = GetGroupByName(groupName);
+			List<int> contactIds = GetByNames(contactNames);
+			
+			string sql = "DELETE FROM " + ContactGroupDao.tableName +
+			" WHERE groupId = '" + groupId + "' AND contactId IN (" + listToIN(contactIds) + ")";
+			database.execute(sql);
+		}
+
+		/// <summary>
+		/// Vrátí id kontatků podle jejich názvů.
+		/// </summary>
+		/// <param name="names">Názvy kontaktů = emaily</param>
+		/// <returns></returns>
+		private List<int> GetByNames(List<string> names)
+		{
+			string sqlNames = string.Join(", ", names.Select(name => name = "'" + name + "'").ToArray());
+			string sql = "SELECT id FROM " + tableName + " WHERE email IN (" + sqlNames + ")";
+
+			SQLiteDataReader reader = database.executeReader(sql);
+			List<int> contactIds = new List<int>();
+
+			while (reader.Read())
+			{
+				contactIds.Add(reader.GetInt32(0));
+			}
+
+			return contactIds;
+		}
+
+		/// <summary>
+		/// Vrátí Id skupiny podle názvu.
+		/// </summary>
+		/// <param name="groupName"></param>
+		/// <returns></returns>
+		private int GetGroupByName(string groupName)
+		{
+			string sql = "SELECT id FROM " + GroupDao.tableName + " WHERE name = '" + groupName + "'";
+			int groupId = Convert.ToInt32((Int64) database.executeScalar(sql));
+			return groupId;
 		}
 
 		/// <summary>

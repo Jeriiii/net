@@ -96,10 +96,53 @@ namespace NewsletterSender
 			sendMailsWin.Show();
 		}
 
+		/// <summary>
+		/// Nastavení programu.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void button3_Click(object sender, EventArgs e)
 		{
 			SettingWin settingWin = new SettingWin();
 			settingWin.Show();
+		}
+
+		/// <summary>
+		/// Tlačítko na smazání skupiny.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void button3_Click_1(object sender, EventArgs e)
+		{
+			if (groupsList.SelectedItems.Count == 0)
+			{
+				WarningMessage.NotGroupSelected();
+			}
+			else
+			{
+				List<string> groupNames = new List<string>();
+				foreach (var contact in groupsList.SelectedItems)
+				{
+					groupNames.Add(contact.ToString());
+				}
+
+				DialogResult dialogResult = WarningMessage.DeleteContact(groupNames);
+				if (dialogResult == DialogResult.Yes)
+				{
+					deleteGroups(groupNames);
+					InitGroups();
+				}
+			}
+		}
+
+		/// <summary>
+		/// Smaže vybrané skupiny.
+		/// </summary>
+		private void deleteGroups(List<string> groupNames)
+		{
+			GroupDao groupDao = new GroupDao(new DB());
+			groupDao.DeleteGroups(groupNames);
+			groupDao.Close();
 		}
 	}
 }

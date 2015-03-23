@@ -19,3 +19,6 @@ D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\obj\Debug\Newsl
 D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\obj\Debug\NewsletterSender.pdb
 D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\obj\Debug\NewsletterSender.win.SettingWin.resources
 D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\obj\Debug\NewsletterSender.csprojResolveAssemblyReference.cache
+D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\bin\Debug\MySql.Data.dll
+D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\obj\Debug\NewsletterSender.win.ImportContactsWin.resources
+D:\škola\net\NewsletterSender\NewsletterSender\NewsletterSender\obj\Debug\NewsletterSender.win.ImportContactsMySQLWin.resources

@@ -17,7 +17,7 @@ namespace NewsletterSender
 		[STAThread]
 		static void Main()
 		{
-			CheckData();
+			//CheckData();
 
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);

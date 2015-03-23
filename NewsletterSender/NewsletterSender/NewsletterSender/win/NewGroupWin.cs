@@ -36,37 +36,19 @@ namespace NewsletterSender
 			string emailsTextArea = this.emails.Text;
 			List<string> emails = EmailUtils.ConvertToList(emailsTextArea);
 
-			if (AreEmailsValid(emails) && GroupNameNotExist(groupName))
+			ImportContacts import  = new ImportContacts();
+			if (import.AreEmailsValid(emails) && GroupNameNotExist(groupName))
 			{
-				/* vytvoří novou skupinu */
-				DB database = new DB();
 
-				GroupDao groupDao = new GroupDao(database);
+				GroupDao groupDao = new GroupDao(new DB());
 				int groupId = groupDao.NewGroup(groupName);
+				groupDao.Close();
 
-				/* uloží emaily */
-				ContactDao contactDao = new ContactDao(database);
-				contactDao.NewContacts(emails, groupId);
-
-				database.Close();
+				import.Import(emails, groupId);
 
 				homeWin.Invalidate();
 				this.Close();
 			}
-		}
-
-		/// <summary>
-		/// Zkontroluje, zda jsou emailové adresy validní. Pokud ne, vypíše upozornění.
-		/// </summary>
-		/// <param name="emails">Seznam emailových adres.</param>
-		/// <returns>TRUE = všechny emaily jsou v dobrém formátu, jinak FALSE.</returns>
-		private bool AreEmailsValid(List<string> emails)
-		{
-			bool areValid = EmailValidator.AreEmailsValid(emails, (List<string> wrongEmailAddresses) =>
-				WarningMessage.WrongEmailsFormat(wrongEmailAddresses)
-			);
-
-			return areValid;
 		}
 
 		

@@ -33,6 +33,7 @@
 			this.button2 = new System.Windows.Forms.Button();
 			this.groupsList = new System.Windows.Forms.ListBox();
 			this.settingBtn = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -69,6 +70,7 @@
 			this.groupsList.FormattingEnabled = true;
 			this.groupsList.Location = new System.Drawing.Point(25, 67);
 			this.groupsList.Name = "groupsList";
+			this.groupsList.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
 			this.groupsList.Size = new System.Drawing.Size(364, 342);
 			this.groupsList.TabIndex = 5;
 			this.groupsList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.groupsList_MouseDoubleClick);
@@ -83,11 +85,22 @@
 			this.settingBtn.UseVisualStyleBackColor = true;
 			this.settingBtn.Click += new System.EventHandler(this.button3_Click);
 			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(408, 96);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(119, 23);
+			this.button3.TabIndex = 7;
+			this.button3.Text = "Smazat skupinu";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click_1);
+			// 
 			// HomeWin
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(572, 540);
+			this.Controls.Add(this.button3);
 			this.Controls.Add(this.settingBtn);
 			this.Controls.Add(this.groupsList);
 			this.Controls.Add(this.button2);
@@ -107,5 +120,6 @@
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.ListBox groupsList;
 		private System.Windows.Forms.Button settingBtn;
+		private System.Windows.Forms.Button button3;
 	}
 }
