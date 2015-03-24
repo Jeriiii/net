@@ -1,4 +1,5 @@
-﻿using NewsletterSender.Dao;
+﻿using NewsletterSender.BUS;
+using NewsletterSender.Dao;
 using NewsletterSender.emails;
 using System;
 using System.Collections.Generic;
@@ -12,22 +13,25 @@ using System.Windows.Forms;
 
 namespace NewsletterSender.win
 {
+	/// <summary>
+	/// Okénko pro import kontatků z MySQL databáze
+	/// </summary>
 	public partial class ImportContactsMySQLWin : Form
 	{
 		/// <summary>
 		/// Okénko pro editaci skupiny.
 		/// </summary>
-		EditGroupWin editGroupWin;
+		private EditGroupWin editGroupWin;
 
 		/// <summary>
-		/// Název editované skupiny.
+		/// Stará se o kontakty.
 		/// </summary>
-		string groupName;
+		private ContactsBUS contactsBUS;
 
 		public ImportContactsMySQLWin(EditGroupWin editGroupWin, string groupName)
 		{
 			InitializeComponent();
-			this.groupName = groupName;
+			this.contactsBUS = new ContactsBUS(groupName);
 			this.editGroupWin = editGroupWin;
 		}
 
@@ -38,22 +42,13 @@ namespace NewsletterSender.win
 		/// <param name="e"></param>
 		private void import_Click(object sender, EventArgs e)
 		{
-			ImportContacts import = new ImportContacts();
-
 			/* načte emaily z tabulky */
-			try { 
-				import.MysqlConn(host.Text, user.Text, password.Text, dbName.Text);
-				List<string> emails = import.GetEmails(tableName.Text, columName.Text);
-				import.Close();
-
-				if (import.AreEmailsValid(emails))
+			try {
+				bool areEmailsValid = this.contactsBUS.Import(
+					host.Text, user.Text, password.Text, dbName.Text, tableName.Text, columName.Text
+				);
+				if (areEmailsValid)
 				{
-					GroupDao groupDao = new GroupDao(new DB());
-					int groupId = groupDao.NewGroup(groupName);
-					groupDao.Close();
-
-					import.Import(emails, groupId);
-
 					this.editGroupWin.Invalidate();
 					this.Close();
 				}

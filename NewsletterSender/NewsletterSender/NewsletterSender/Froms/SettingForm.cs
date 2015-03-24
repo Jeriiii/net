@@ -1,4 +1,5 @@
-﻿using NewsletterSender.Dao;
+﻿using NewsletterSender.BUS;
+using NewsletterSender.Dao;
 using NewsletterSender.Database.Model;
 using System;
 using System.Collections.Generic;
@@ -12,15 +13,18 @@ using System.Windows.Forms;
 
 namespace NewsletterSender.win
 {
-	public partial class InstallWin : Form
+	public partial class SettingWin : Form
 	{
-		public InstallWin()
+		/// <summary>
+		/// Stará se o instalaci programu.
+		/// </summary>
+		SettingBUS settingBUS;
+
+		public SettingWin()
 		{
 			InitializeComponent();
 
-			SettingDao settingDao = new SettingDao(new DB());
-			SettingModel model = settingDao.GetAll().First();
-			settingDao.Close();
+			SettingModel model = settingBUS.GetSetting();
 
 			host.Text = model.host;
 			port.Text = model.port.ToString();
@@ -34,19 +38,22 @@ namespace NewsletterSender.win
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void button1_Click(object sender, EventArgs e)
+		private void save_Click(object sender, EventArgs e)
 		{
-			SettingModel model = new SettingModel();
-			model.host = host.Text;
-			model.port = int.Parse(port.Text);
+			settingBUS.SaveSettingModel(
+				host.Text, int.Parse(port.Text), fromName.Text, fromAdderss.Text
+			);
 
-			model.fromName = fromName.Text;
-			model.fromAddress = fromAdderss.Text;
+			this.Close();
+		}
 
-			SettingDao settingDao = new SettingDao(new DB());
-			settingDao.Save(model);
-			settingDao.Close();
-
+		/// <summary>
+		/// Zavře okno.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void cancel_Click(object sender, EventArgs e)
+		{
 			this.Close();
 		}
 	}

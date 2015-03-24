@@ -1,4 +1,5 @@
-﻿using NewsletterSender.Dao;
+﻿using NewsletterSender.BUS;
+using NewsletterSender.Dao;
 using NewsletterSender.Database.Model;
 using NewsletterSender.emails;
 using System;
@@ -20,47 +21,27 @@ namespace NewsletterSender
 	public partial class SendMailsWin : Form
 	{
 		/// <summary>
-		/// Kontakty, kam se mají emaily odeslat.
+		/// Stará se o odeslání emailů.
 		/// </summary>
-		Dictionary<int, string> contacts;
+		SendMailBUS sendMailBUS;
+
+		/// <summary>
+		/// Stará se o instalaci programu.
+		/// </summary>
+		SettingBUS settingBUS;
 
 		public SendMailsWin(Dictionary<int, string> contacts)
 		{
 			InitializeComponent();
-			this.contacts = contacts;
 
-			SettingDao settingDao = new SettingDao(new DB());
-			SettingModel model = settingDao.GetAll().First();
-			settingDao.Close();
+			sendMailBUS = new SendMailBUS(contacts);
+			settingBUS = new SettingBUS();
 
+			SettingModel model = settingBUS.GetSetting();
 			fromName.Text = model.fromName;
 			fromAdderss.Text = model.fromAddress;
 
 			progressBar.Visible = false;
-		}
-
-		private void Form1_Load(object sender, EventArgs e)
-		{
-
-		}
-
-		/// <summary>
-		/// Připravý emaily k odeslání a odešle je.
-		/// </summary>
-		/// <param name="contacts">Kontakty, kterým se má email odeslat.</param>
-		/// <param name="emailMessage">Zpráva co se má odeslat.</param>
-		private void sendMails(Dictionary<int, string> contacts, EmailMessage emailMessage)
-		{
-			MailMessages mailMessages = new MailMessages();
-			try
-			{
-				mailMessages.SendMails(this.progressBar, contacts, emailMessage);
-				WarningMessage.EmailsSended();
-			}
-			catch (Exception ex)
-			{
-				WarningMessage.EmailsNotSended(ex.Message);
-			}
 		}
 
 		/// <summary>
@@ -75,10 +56,10 @@ namespace NewsletterSender
 			emailMessage.Body = body.Text;
 			emailMessage.Subject = subject.Text;
 			emailMessage.IsBodyHtml = idBodyHTML.Checked;
-			emailMessage.FromName = "";
-			emailMessage.FromAddress = "info@123.cz";
+			emailMessage.FromName = fromName.Text;
+			emailMessage.FromAddress = fromAdderss.Text;
 
-			sendMails(contacts, emailMessage);
+			sendMailBUS.sendMails(progressBar, emailMessage);
 			this.Close();
 		}
 	}

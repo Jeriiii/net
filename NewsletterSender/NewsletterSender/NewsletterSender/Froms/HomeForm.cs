@@ -11,15 +11,22 @@ using NewsletterSender.Dao;
 using System.Net.Mail;
 using NewsletterSender.emails;
 using NewsletterSender.win;
+using NewsletterSender.BUS;
 
 namespace NewsletterSender
 {
 	public partial class HomeWin : Form
 	{
+		/// <summary>
+		/// Stará se o operace nad Home formulářem.
+		/// </summary>
+		private HomeBUS homeBUS;
+
 		public HomeWin()
 		{
 			InitializeComponent();
 
+			this.homeBUS = new HomeBUS();
 			this.Invalidated += InvalidateEventHandler;
 		}
 
@@ -40,11 +47,6 @@ namespace NewsletterSender
 			newGroupWin.Show();
 		}
 
-		protected static void OnRefresh(System.ComponentModel.RefreshEventArgs e)
-		{
-			Console.WriteLine(e.ComponentChanged.ToString());
-		}
-
 		/// <summary>
 		/// Zavolá se po invalidaci formuláře.
 		/// </summary>
@@ -58,13 +60,9 @@ namespace NewsletterSender
 		/// <summary>
 		/// Inicialiyuje skupiny.
 		/// </summary>
-		private void InitGroups() {
-			GroupDao groupDao = new GroupDao(new DB());
-
-			Dictionary<int, string> groups = groupDao.GetAll();
-			groupsList.DataSource = (List<string>) groups.Select(group => group.Value).ToList();
-			
-			groupDao.Close();
+		private void InitGroups() 
+		{
+			groupsList.DataSource = this.homeBUS.GetGroups();
 		}
 
 		/// <summary>
@@ -89,8 +87,7 @@ namespace NewsletterSender
 		private void button1_Click(object sender, EventArgs e)
 		{
 			List<string> selectedItems = groupsList.SelectedItems.Cast<string>().ToList(); //vybrané položky
-			ContactDao contactDao = new ContactDao(new DB());
-			Dictionary<int, string> contacts = contactDao.GetByGroupNames(selectedItems);
+			Dictionary<int, string> contacts = this.homeBUS.GetSelectedContacts(selectedItems);
 
 			SendMailsWin sendMailsWin = new SendMailsWin(contacts);
 			sendMailsWin.Show();
@@ -129,20 +126,10 @@ namespace NewsletterSender
 				DialogResult dialogResult = WarningMessage.DeleteContact(groupNames);
 				if (dialogResult == DialogResult.Yes)
 				{
-					deleteGroups(groupNames);
+					this.homeBUS.DeleteGroups(groupNames);
 					InitGroups();
 				}
 			}
-		}
-
-		/// <summary>
-		/// Smaže vybrané skupiny.
-		/// </summary>
-		private void deleteGroups(List<string> groupNames)
-		{
-			GroupDao groupDao = new GroupDao(new DB());
-			groupDao.DeleteGroups(groupNames);
-			groupDao.Close();
 		}
 	}
 }

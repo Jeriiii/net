@@ -9,22 +9,26 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NewsletterSender.Dao;
 using NewsletterSender.win;
+using NewsletterSender.BUS;
 
 namespace NewsletterSender
 {
 	public partial class EditGroupWin : Form
 	{
-		HomeWin homeWin;
 		/// <summary>
-		/// Název editované skupiny.
+		/// Hlavní formulář.
 		/// </summary>
-		string groupName;
+		HomeWin homeWin;
+
+		/// <summary>
+		/// BUS pro skupiny.
+		/// </summary>
+		GroupsBUS groupsBUS;
 
 		public EditGroupWin(HomeWin homeWin, string groupName)
 		{
+			this.groupsBUS = new GroupsBUS(groupName);
 			this.homeWin = homeWin;
-			this.groupName = groupName;
-
 			this.Invalidated += InvalidateEventHandler;
 
 			InitializeComponent();
@@ -41,9 +45,12 @@ namespace NewsletterSender
 			InitEmails();
 		}
 
+		/// <summary>
+		/// Nastaví jméno skupiny.
+		/// </summary>
 		private void InitGroupName()
 		{
-			this.groupNameBox.Text = this.groupName;
+			this.groupNameBox.Text = this.groupsBUS.groupName;
 		}
 
 		/// <summary>
@@ -51,11 +58,7 @@ namespace NewsletterSender
 		/// </summary>
 		private void InitEmails()
 		{
-			DB database = new DB();
-			ContactDao contactDao = new ContactDao(new DB());
-			Dictionary<int, string> contacts = contactDao.GetByGroupName(groupName);
-
-			this.contactsBox.DataSource = (List<string>)contacts.Select(group => group.Value).ToList();
+			this.contactsBox.DataSource = this.groupsBUS.GetContacts();
 		}
 
 		/// <summary>
@@ -77,20 +80,10 @@ namespace NewsletterSender
 				DialogResult dialogResult = WarningMessage.DeleteContact(contactNames);
 				if (dialogResult == DialogResult.Yes)
 				{
-					deleteContacts(contactNames);
+					groupsBUS.DeleteContacts(contactNames);
 					InitEmails();
 				}				
 			}
-		}
-
-		/// <summary>
-		/// Smaže vybrané kontakty.
-		/// </summary>
-		private void deleteContacts(List<string> contactNames)
-		{
-			ContactDao contactDao = new ContactDao(new DB());
-			contactDao.DeleteContacts(contactNames, this.groupName);
-			contactDao.Close();
 		}
 
 		/// <summary>
@@ -100,7 +93,7 @@ namespace NewsletterSender
 		/// <param name="e"></param>
 		private void importContactsDBBtn_Click(object sender, EventArgs e)
 		{
-			ImportContactsMySQLWin impWin = new ImportContactsMySQLWin(this, groupName);
+			ImportContactsMySQLWin impWin = new ImportContactsMySQLWin(this, this.groupsBUS.groupName);
 			impWin.Show();
 		}
 
@@ -111,40 +104,22 @@ namespace NewsletterSender
 		/// <param name="e"></param>
 		private void importContactBtn_Click(object sender, EventArgs e)
 		{
-			ImportContactsWin impWin = new ImportContactsWin(this, groupName);
+			ImportContactsWin impWin = new ImportContactsWin(this, this.groupsBUS.groupName);
 			impWin.Show();
 		}
 
+		/// <summary>
+		/// Uloží název skupiny.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void button1_Click(object sender, EventArgs e)
 		{
 			string newGroupName = this.groupNameBox.Text;
 
-			if (GroupNameNotExist(newGroupName))
-			{
-				GroupDao groupDao = new GroupDao(new DB());
-				groupDao.UpdateName(groupName, newGroupName);
-				groupDao.Close();
+			groupsBUS.SaveGroupName(newGroupName);
 
-				homeWin.Invalidate();
-				this.Close();
-			}
-		}
-
-		/// <summary>
-		/// Zkontroluje, zda existuje skupina s tímto názvem. Pokud ano, vypíše varovnou hlášku.
-		/// </summary>
-		/// <param name="groupName">Název skupiny.</param>
-		/// <returns>TRUE = skupina s tímto názvem neexistuje, jinak FALSE.</returns>
-		private bool GroupNameNotExist(string groupName)
-		{
-			GroupDao groupDao = new GroupDao(new DB());
-			bool nameExist = groupDao.GroupNameExist(groupName);
-			if (nameExist)
-			{
-				WarningMessage.WrongGroupName(groupName);
-			}
-
-			return !nameExist;
+			homeWin.Invalidate();
 		}
 	}
 }

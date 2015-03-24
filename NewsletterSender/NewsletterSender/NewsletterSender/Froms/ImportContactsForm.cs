@@ -1,4 +1,5 @@
-﻿using NewsletterSender.Dao;
+﻿using NewsletterSender.BUS;
+using NewsletterSender.Dao;
 using NewsletterSender.emails;
 using System;
 using System.Collections.Generic;
@@ -21,14 +22,14 @@ namespace NewsletterSender.win
 		EditGroupWin editGroupWin;
 
 		/// <summary>
-		/// Název editované skupiny.
+		/// Stará se o kontakty.
 		/// </summary>
-		string groupName;
+		private ContactsBUS contactsBUS;
 
 		public ImportContactsWin(EditGroupWin editGroupWin, string groupName)
 		{
 			InitializeComponent();
-			this.groupName = groupName;
+			this.contactsBUS = new ContactsBUS(groupName);
 			this.editGroupWin = editGroupWin;
 		}
 
@@ -40,18 +41,11 @@ namespace NewsletterSender.win
 		private void button1_Click(object sender, EventArgs e)
 		{
 			string emailsTextArea = this.emails.Text;
+
 			List<string> emails = EmailUtils.ConvertToList(emailsTextArea);
+			bool areEmailsValid = this.contactsBUS.Import(emails);
 
-			ImportContacts import = new ImportContacts();
-			if (import.AreEmailsValid(emails))
-			{
-
-				GroupDao groupDao = new GroupDao(new DB());
-				int groupId = groupDao.NewGroup(groupName);
-				groupDao.Close();
-
-				import.Import(emails, groupId);
-
+			if (areEmailsValid) {
 				editGroupWin.Invalidate();
 				this.Close();
 			}
