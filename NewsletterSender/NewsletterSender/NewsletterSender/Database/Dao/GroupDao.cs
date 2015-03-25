@@ -106,5 +106,17 @@ namespace NewsletterSender.Dao
 
 			return groupIds;
 		}
+
+		/// <summary>
+		/// Vrátí Id skupiny podle názvu.
+		/// </summary>
+		/// <param name="groupName"></param>
+		/// <returns></returns>
+		public int GetGroupByName(string groupName)
+		{
+			string sql = "SELECT id FROM " + tableName + " WHERE name = '" + groupName + "'";
+			int groupId = Convert.ToInt32((Int64)database.executeScalar(sql));
+			return groupId;
+		}
 	}
 }

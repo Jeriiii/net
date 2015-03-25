@@ -10,7 +10,7 @@ namespace NewsletterSender.BUS
 	/// <summary>
 	/// Stará se o operace nad Home formulářem.
 	/// </summary>
-	class HomeBUS
+	class HomeBUS : AbstractBUS
 	{
 
 		/// <summary>

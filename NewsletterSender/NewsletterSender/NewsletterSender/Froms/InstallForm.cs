@@ -24,6 +24,7 @@ namespace NewsletterSender.win
 		{
 			InitializeComponent();
 
+			settingBUS = new SettingBUS();
 			SettingModel model = settingBUS.GetSetting();
 
 			host.Text = model.host;

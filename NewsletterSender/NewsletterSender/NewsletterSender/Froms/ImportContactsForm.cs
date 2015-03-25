@@ -26,10 +26,10 @@ namespace NewsletterSender.win
 		/// </summary>
 		private ContactsBUS contactsBUS;
 
-		public ImportContactsWin(EditGroupWin editGroupWin, string groupName)
+		public ImportContactsWin(EditGroupWin editGroupWin, int groupId)
 		{
 			InitializeComponent();
-			this.contactsBUS = new ContactsBUS(groupName);
+			this.contactsBUS = new ContactsBUS(groupId);
 			this.editGroupWin = editGroupWin;
 		}
 

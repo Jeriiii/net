@@ -11,7 +11,7 @@ namespace NewsletterSender.BUS
 	/// <summary>
 	/// Stará se o odeslání emailů.
 	/// </summary>
-	class SendMailBUS
+	class SendMailBUS : AbstractBUS
 	{
 		/// <summary>
 		/// Kontakty, kam se mají emaily odeslat.

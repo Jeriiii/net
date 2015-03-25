@@ -25,11 +25,6 @@ namespace NewsletterSender
 		/// </summary>
 		GroupsBUS groupsBUS;
 
-		/// <summary>
-		/// Stará se o kontakty.
-		/// </summary>
-		private ContactsBUS contactsBUS;
-
 		public NewGroupWin(HomeWin homeWin)
 		{
 			this.groupsBUS = new GroupsBUS();

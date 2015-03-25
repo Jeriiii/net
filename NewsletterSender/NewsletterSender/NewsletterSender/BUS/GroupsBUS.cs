@@ -11,16 +11,26 @@ namespace NewsletterSender.BUS
 	/// <summary>
 	/// Stará se o skupinu.
 	/// </summary>
-	class GroupsBUS
+	class GroupsBUS : AbstractBUS
 	{
 		/// <summary>
 		/// Název editované skupiny.
 		/// </summary>
 		public string groupName {get; set;}
 
+		/// <summary>
+		/// Id skupiny.
+		/// </summary>
+		public int groupId;
+
 		public GroupsBUS(string groupName)
 		{
+			GroupDao groupDao = new GroupDao(new DB());
+			int groupId = groupDao.GetGroupByName(groupName);
+			groupDao.Close();
+
 			this.groupName = groupName;
+			this.groupId = groupId;
 		}
 
 		public GroupsBUS()	{}
@@ -59,6 +69,7 @@ namespace NewsletterSender.BUS
 				GroupDao groupDao = new GroupDao(new DB());
 				groupDao.UpdateName(groupName, newGroupName);
 				groupDao.Close();
+				groupName = newGroupName;
 			}
 		}
 

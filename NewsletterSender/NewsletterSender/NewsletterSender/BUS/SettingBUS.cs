@@ -11,7 +11,7 @@ namespace NewsletterSender.BUS
 	/// <summary>
 	/// Stará se o instalaci programu.
 	/// </summary>
-	class SettingBUS
+	class SettingBUS : AbstractBUS
 	{
 		/// <summary>
 		/// Vrátí nastavení programu.

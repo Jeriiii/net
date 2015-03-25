@@ -93,7 +93,7 @@ namespace NewsletterSender
 		/// <param name="e"></param>
 		private void importContactsDBBtn_Click(object sender, EventArgs e)
 		{
-			ImportContactsMySQLWin impWin = new ImportContactsMySQLWin(this, this.groupsBUS.groupName);
+			ImportContactsMySQLWin impWin = new ImportContactsMySQLWin(this, this.groupsBUS.groupId);
 			impWin.Show();
 		}
 
@@ -104,7 +104,7 @@ namespace NewsletterSender
 		/// <param name="e"></param>
 		private void importContactBtn_Click(object sender, EventArgs e)
 		{
-			ImportContactsWin impWin = new ImportContactsWin(this, this.groupsBUS.groupName);
+			ImportContactsWin impWin = new ImportContactsWin(this, this.groupsBUS.groupId);
 			impWin.Show();
 		}
 

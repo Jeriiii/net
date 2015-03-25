@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Business vrstva">
+    <Position X="1.137" Y="1.32" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Databázová vrstva">
+    <Position X="1.027" Y="6.015" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Zobrazovací vrstva">
+    <Position X="1.082" Y="8.986" Height="0.75" Width="1.7" />
+  </Comment>
+  <Class Name="NewsletterSender.BUS.AbstractBUS" Collapsed="true">
+    <Position X="4.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BUS\AbstractBUS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.BUS.ContactsBUS" Collapsed="true">
+    <Position X="1.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BUS\ContactsBUS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.BUS.GroupsBUS" Collapsed="true">
+    <Position X="3" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAQAAAAAIBAAAABAAAAAAAAAAAAAAIAAAAABAAAQ=</HashCode>
+      <FileName>BUS\GroupsBUS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.BUS.HomeBUS" Collapsed="true">
+    <Position X="4.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAEAAAAAAAAABA=</HashCode>
+      <FileName>BUS\HomeBUS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.BUS.SendMailBUS" Collapsed="true">
+    <Position X="6.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BUS\SendMailBUS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.BUS.SettingBUS" Collapsed="true">
+    <Position X="8.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BUS\SettingBUS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.Dao.AbstractDao" Collapsed="true">
+    <Position X="3.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAEAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Database\Dao\AbstractDao.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.Dao.ContactDao" Collapsed="true">
+    <Position X="1.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACBAEAAAFAQAAAAAAABAACBAABAAABAAAA=</HashCode>
+      <FileName>Database\Dao\ContactDao.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.Dao.ContactGroupDao" Collapsed="true">
+    <Position X="3" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Database\Dao\ContactGroupDao.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.Dao.GroupDao" Collapsed="true">
+    <Position X="4.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAIBAgAAQAACABQ=</HashCode>
+      <FileName>Database\Dao\GroupDao.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.Dao.SettingDao" Collapsed="true">
+    <Position X="6.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAABAgAAAAAAAAA=</HashCode>
+      <FileName>Database\Dao\SettingDao.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.Dao.DB" Collapsed="true">
+    <Position X="8.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAAAACAAQCAAAA=</HashCode>
+      <FileName>Database\DB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.Database.Model.SettingModel" Collapsed="true">
+    <Position X="8.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAoAAAgAAAAAAAA=</HashCode>
+      <FileName>Database\Model\SettingModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.emails.EmailMessage" Collapsed="true">
+    <Position X="1.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAJABACAAAgAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>EmailUtils\EmailMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.emails.EmailUtils" Collapsed="true">
+    <Position X="6.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EmailUtils\EmailUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.emails.EmailValidator" Collapsed="true">
+    <Position X="1.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>EmailUtils\EmailValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.emails.ImportContacts" Collapsed="true">
+    <Position X="3" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAIAAAAAAAAAQAAAAAAAAAAACUAAA=</HashCode>
+      <FileName>EmailUtils\ImportContacts.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.MailMessages" Collapsed="true">
+    <Position X="3" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EmailUtils\MailMessages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.EditGroupWin" Collapsed="true">
+    <Position X="3" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAACAAAhAQAACCAAAiEAAIAAAAAGDAACgiAAA=</HashCode>
+      <FileName>Froms\EditGroupForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.HomeWin" Collapsed="true">
+    <Position X="1.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACQAAhAAAACEgAACAEA4CCAACHAAAAAAAAA=</HashCode>
+      <FileName>Froms\HomeForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.NewGroupWin" Collapsed="true">
+    <Position X="3" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAgAACCAAACAAAMAAAAAEAAAAACAAA=</HashCode>
+      <FileName>Froms\NewGroupForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.SendMailsWin" Collapsed="true">
+    <Position X="4.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAgAQACAAABAAAACIAACCAQAIAQIAAEAAAAAAAAA=</HashCode>
+      <FileName>Froms\SendMailsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.WarningMessage" Collapsed="true">
+    <Position X="1.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACgAAACAAAAAAAACAAAAAAAAAAAAAAAEAAAAgAABAI=</HashCode>
+      <FileName>Froms\WarningMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.win.ImportContactsWin" Collapsed="true">
+    <Position X="8.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAABAgAACAAAACAAAIAAAAAEAEAAAAAAA=</HashCode>
+      <FileName>Froms\ImportContactsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.win.ImportContactsMySQLWin" Collapsed="true">
+    <Position X="4.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAABCAAABAAAAKAACACAAAAAAABEAgEAgAAAQA=</HashCode>
+      <FileName>Froms\ImportContactsMySQLForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.win.InstallWin" Collapsed="true">
+    <Position X="6.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAACAAABAAAACIAACCAAAIAAoAAEgAABAAAAA=</HashCode>
+      <FileName>Froms\InstallForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsletterSender.win.SettingWin" Collapsed="true">
+    <Position X="8.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAgAAACCAABAAAACMAQCCAAAAAAoAAAgAABAAAAA=</HashCode>
+      <FileName>Froms\SettingForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -103,17 +103,66 @@ namespace NewsletterSender.Dao
 		/// <returns></returns>
 		public int NewContact(string email, int groupId) 
 		{
-			/* vložení nového záznamu */
-			string sql = "INSERT INTO " + tableName + " (email) VALUES ('" + email + "')";
-			database.execute(sql);
+			int contactId = FindById(email);
+			
+			if (contactId == 0) {
+				/* vložení nového záznamu */
+				string sql = "INSERT INTO " + tableName + " (email) VALUES ('" + email + "')";
+				database.execute(sql);
 
-			/* napojení na skupinu emailů */
-			sql = "SELECT last_insert_rowid() AS id FROM " + tableName;
-			int contactId = Convert.ToInt32((Int64) database.executeScalar(sql));
+				/* napojení na skupinu emailů */
+				sql = "SELECT last_insert_rowid() AS id FROM " + tableName;
+				contactId = Convert.ToInt32((Int64) database.executeScalar(sql));
 
-			this.ToGroup(contactId, groupId);
+				this.ToGroup(contactId, groupId);
+			}
+			else
+			{
+				/* pokud je už v nějaké skupině, zkontroluje, jestli není už v této konkrétní skupině */
+				if (! IsInGroup(contactId, groupId))
+				{
+					this.ToGroup(contactId, groupId);
+				}
+			}
 
 			return contactId;
+		}
+
+		/// <summary>
+		/// Zjistí, jestli tento kontakt je již v této skupině.
+		/// </summary>
+		/// <param name="contactId">Id kontaktu.</param>
+		/// <param name="groupId">Id skupiny.</param>
+		/// <returns>TRUE = kontakt je již v této skupině, jinak FALSE.</returns>
+		private bool IsInGroup(int contactId, int groupId) {
+			string sql = "SELECT contactId FROM " + ContactGroupDao.tableName +
+				" WHERE contactId = '" + contactId + "' AND groupId = '" + groupId + "'";
+			
+			var contactGroupId = database.executeScalar(sql);
+
+			if (contactGroupId != null)
+			{
+				return true;
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Vrátí id kontaktu, pokud existuje.
+		/// </summary>
+		/// <param name="email">Emailová adresa.</param>
+		/// <returns>Id kontaktu.</returns>
+		private int FindById(string email)
+		{
+			string sql = "SELECT id FROM " + tableName + " WHERE email = '" + email + "'";
+			var contactId = database.executeScalar(sql);
+			if (contactId != null)
+			{
+				return Convert.ToInt32((Int64) contactId);
+			}
+
+			return 0;
 		}
 
 		/// <summary>
@@ -147,7 +196,8 @@ namespace NewsletterSender.Dao
 		/// <param name="groupName">Název skupiny.</param>
 		public void DeleteContacts(List<string> contactNames, string groupName)
 		{
-			int groupId = GetGroupByName(groupName);
+			GroupDao groupDao = new GroupDao(database);
+			int groupId = groupDao.GetGroupByName(groupName);
 			List<int> contactIds = GetByNames(contactNames);
 			
 			string sql = "DELETE FROM " + ContactGroupDao.tableName +
@@ -174,18 +224,6 @@ namespace NewsletterSender.Dao
 			}
 
 			return contactIds;
-		}
-
-		/// <summary>
-		/// Vrátí Id skupiny podle názvu.
-		/// </summary>
-		/// <param name="groupName"></param>
-		/// <returns></returns>
-		private int GetGroupByName(string groupName)
-		{
-			string sql = "SELECT id FROM " + GroupDao.tableName + " WHERE name = '" + groupName + "'";
-			int groupId = Convert.ToInt32((Int64) database.executeScalar(sql));
-			return groupId;
 		}
 
 		/// <summary>

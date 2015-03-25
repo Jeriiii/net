@@ -153,7 +153,6 @@
 			this.Controls.Add(this.fromName);
 			this.Name = "SettingWin";
 			this.Text = "SettingWin";
-			this.Load += new System.EventHandler(this.SettingWin_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

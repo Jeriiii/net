@@ -11,17 +11,17 @@ namespace NewsletterSender.BUS
 	/// <summary>
 	/// Stará se o kontakty.
 	/// </summary>
-	class ContactsBUS
+	class ContactsBUS : AbstractBUS
 	{
 
 		/// <summary>
 		/// Název skupiny ve které jsou dané kontakty.
 		/// </summary>
-		public string groupName;
+		public int groupId;
 
-		public ContactsBUS(string groupName)
+		public ContactsBUS(int groupId)
 		{
-			this.groupName = groupName;
+			this.groupId = groupId;
 		}
 
 		/// <summary>
@@ -56,10 +56,6 @@ namespace NewsletterSender.BUS
 			bool areEmailsValid = import.AreEmailsValid(emails);
 			if (areEmailsValid)
 			{
-				GroupDao groupDao = new GroupDao(new DB());
-				int groupId = groupDao.NewGroup(groupName);
-				groupDao.Close();
-
 				import.Import(emails, groupId);
 			}
 
