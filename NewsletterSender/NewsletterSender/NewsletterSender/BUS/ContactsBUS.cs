@@ -52,8 +52,8 @@ namespace NewsletterSender.BUS
 		public bool Import(List<string> emails)
 		{
 			ImportContacts import = new ImportContacts();
-			
-			bool areEmailsValid = import.AreEmailsValid(emails);
+
+			bool areEmailsValid = EmailValidator.AreEmailsValid(emails);
 			if (areEmailsValid)
 			{
 				import.Import(emails, groupId);

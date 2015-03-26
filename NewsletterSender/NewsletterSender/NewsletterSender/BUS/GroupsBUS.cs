@@ -85,7 +85,7 @@ namespace NewsletterSender.BUS
 			List<string> emails = EmailUtils.ConvertToList(emailsTextArea);
 
 			ImportContacts import = new ImportContacts();
-			if (import.AreEmailsValid(emails) && GroupNameNotExist(groupName))
+			if (EmailValidator.AreEmailsValid(emails) && GroupNameNotExist(groupName))
 			{
 				int groupId = NewGroup(groupName);
 				import.Import(emails, groupId);

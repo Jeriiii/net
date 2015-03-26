@@ -81,7 +81,7 @@
     <Compile Include="EmailUtils\EmailMessage.cs" />
     <Compile Include="EmailUtils\EmailUtils.cs" />
     <Compile Include="EmailUtils\EmailValidator.cs" />
-    <Compile Include="EmailUtils\ImportContacts.cs" />
+    <Compile Include="Database\ImportContacts.cs" />
     <Compile Include="EmailUtils\MailMessages.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -167,7 +167,7 @@
     <EmbeddedResource Include="Froms\SettingForm.resx">
       <DependentUpon>SettingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

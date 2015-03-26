@@ -40,20 +40,6 @@ namespace NewsletterSender.emails
 		}
 
 		/// <summary>
-		/// Zkontroluje, zda jsou emailové adresy validní. Pokud ne, vypíše upozornění.
-		/// </summary>
-		/// <param name="emails">Seznam emailových adres.</param>
-		/// <returns>TRUE = všechny emaily jsou v dobrém formátu, jinak FALSE.</returns>
-		public bool AreEmailsValid(List<string> emails)
-		{
-			bool areValid = EmailValidator.AreEmailsValid(emails, (List<string> wrongEmailAddresses) =>
-				WarningMessage.WrongEmailsFormat(wrongEmailAddresses)
-			);
-
-			return areValid;
-		}
-
-		/// <summary>
 		/// Vloží kontakty do DB.
 		/// </summary>
 		/// <param name="emails">Emaily, co se mají vložit.</param>
@@ -63,6 +49,7 @@ namespace NewsletterSender.emails
 			/* uloží emaily */
 			ContactDao contactDao = new ContactDao(new DB());
 			contactDao.NewContacts(emails, groupId);
+			contactDao.Close();
 		}
 
 		/// <summary>
